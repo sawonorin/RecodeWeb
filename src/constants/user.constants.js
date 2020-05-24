@@ -1,0 +1,1 @@
+export const SMITE_USER = "SMITE_USER";
