@@ -15,8 +15,13 @@ const LoginForm = () => {
     email: "",
     password: "",
   });
-  const { response, login } = authHooks.useLogin();
-  console.log(response);
+  const { loading, loginResponse, login } = authHooks.useLogin();
+  const [visible, setVisibility] = useState(false);
+
+  const handleLogin = () => {
+    login(loginFormParams);
+    setVisibility(true);
+  };
 
   return (
     <Grid textAlign="center" style={{ height: "100vh" }} verticalAlign="middle">
@@ -25,7 +30,13 @@ const LoginForm = () => {
           {/*<Image src='/logo.png' />*/} Log-in to your account
         </Header>
 
-        <Form size="large" onSubmit={() => login(loginFormParams)}>
+        {loginResponse.error && visible && (
+          <Message error onDismiss={() => setVisibility(false)}>
+            {loginResponse.error}
+          </Message>
+        )}
+
+        <Form size="large" onSubmit={() => handleLogin()}>
           <Segment stacked>
             <Form.Input
               fluid
@@ -55,7 +66,13 @@ const LoginForm = () => {
               }
             />
 
-            <Button color="teal" fluid size="large" type="submit">
+            <Button
+              color="teal"
+              fluid
+              size="large"
+              type="submit"
+              loading={loading}
+            >
               Login
             </Button>
           </Segment>
