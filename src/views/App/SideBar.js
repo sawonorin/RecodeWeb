@@ -5,7 +5,7 @@ const SideBar = () => {
   const [activeItem, handleItemClick] = useState("Dashboard");
 
   return (
-    <Menu fluid vertical pointing inverted style={{ minHeight: "100vh" }}>
+    <Menu fluid vertical pointing inverted style={{ minHeight: "100vh", borderRadius:0 }}>
       <Menu.Item>
         <Segment textAlign="center" inverted color="purple">
           <Header>HIRE WELL</Header>

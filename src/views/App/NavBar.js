@@ -1,11 +1,17 @@
 import React, { useState } from "react";
 import { Button, Dropdown, Menu } from "semantic-ui-react";
+import { Link } from "react-router-dom";
 
 const NavBar = () => {
   const [activeItem, handleItemClick] = useState("home");
 
   return (
-    <Menu stackable inverted color="purple">
+    <Menu
+      stackable
+      inverted
+      color="purple"
+      style={{ borderTopLeftRadius: 0, borderTopRightRadius: 0 }}
+    >
       <Menu.Item>
         <img src="https://react.semantic-ui.com/logo.png" alt="company logo" />
       </Menu.Item>
@@ -30,7 +36,9 @@ const NavBar = () => {
         </Dropdown>
 
         <Menu.Item>
-          <Button>Logout</Button>
+          <Button as={Link} to="/">
+            Logout
+          </Button>
         </Menu.Item>
       </Menu.Menu>
     </Menu>
