@@ -5,7 +5,7 @@ const NavBar = () => {
   const [activeItem, handleItemClick] = useState("home");
 
   return (
-    <Menu stackable>
+    <Menu stackable inverted color="purple">
       <Menu.Item>
         <img src="https://react.semantic-ui.com/logo.png" alt="company logo" />
       </Menu.Item>
@@ -30,7 +30,7 @@ const NavBar = () => {
         </Dropdown>
 
         <Menu.Item>
-          <Button primary>Logout</Button>
+          <Button>Logout</Button>
         </Menu.Item>
       </Menu.Menu>
     </Menu>

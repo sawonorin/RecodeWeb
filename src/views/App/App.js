@@ -6,7 +6,7 @@ import SideBar from "./SideBar";
 
 const App = () => {
   return (
-    <Grid divided>
+    <Grid divided style={{ paddingRight: 15 }}>
       <Grid.Row style={{ paddingBottom: 0 }}>
         <Grid.Column width={4}>
           <SideBar />
