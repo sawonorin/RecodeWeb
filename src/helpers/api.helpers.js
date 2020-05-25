@@ -1,6 +1,5 @@
 import axios from "axios";
-import { SUCCESS_RESPONSE } from "../constants";
-import { authHeader } from "./auth-header";
+import { SUCCESS_RESPONSE, SMITE_USER } from "../constants";
 
 export const apiHelpers = {
   postRequest,
@@ -9,15 +8,24 @@ export const apiHelpers = {
   interpretErrorResponse,
 };
 
-let header = authHeader();
+function authHeader() {
+  let user = JSON.parse(localStorage.getItem(SMITE_USER));
+
+  if (user && user.access_token) {
+    return { Authorization: `Bearer ${user.access_token}` };
+  }
+  return {};
+}
 
 function postRequest(url, payload) {
+  const header = authHeader();
   let reqHeader = header ? header : { "Content-Type": "application/json" };
   let config = { headers: reqHeader };
   return axios.post(url, payload, config);
 }
 
 function getRequest(url) {
+  const header = authHeader();
   let reqHeader = header ? header : { "Content-Type": "application/json" };
   let config = { headers: reqHeader };
   return axios

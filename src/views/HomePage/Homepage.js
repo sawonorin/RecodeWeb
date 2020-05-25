@@ -15,6 +15,7 @@ import {
   Sidebar,
   Visibility,
 } from 'semantic-ui-react'
+import { removeItemFromLocalStorage } from '../../helpers/user.helpers'
 
 // Heads up!
 // We using React Static to prerender our docs with server side rendering, this is a quite simple solution.
@@ -73,6 +74,10 @@ class DesktopContainer extends Component {
   hideFixedMenu = () => this.setState({ fixed: false })
   showFixedMenu = () => this.setState({ fixed: true })
 
+  componentDidMount() {
+    removeItemFromLocalStorage()
+  }
+  
   render() {
     const { children } = this.props
     const { fixed } = this.state

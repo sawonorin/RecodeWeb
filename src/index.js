@@ -4,7 +4,7 @@ import "./index.css";
 import * as serviceWorker from "./serviceWorker";
 import { switchTheme, localThemeState } from "./helpers";
 import ThemeProvider from "./context/theme/ThemeProvider";
-import Routes from "./routes/Routes";
+import ExternalRoutes from "./routes/externalRoutes";
 import { defaultTheme } from "./constants";
 import 'semantic-ui-css/semantic.min.css'
 
@@ -14,7 +14,7 @@ switchTheme(localThemeState ? localThemeState : defaultTheme);
 ReactDOM.render(
   <React.StrictMode>
     <ThemeProvider>
-      <Routes />
+      <ExternalRoutes />
     </ThemeProvider>
   </React.StrictMode>,
   document.getElementById("root")
