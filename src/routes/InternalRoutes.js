@@ -1,12 +1,12 @@
 import React from "react";
 import { Route, Switch } from "react-router-dom";
-import { routeData } from "./routeData";
+import { internalRoutesData } from "./InternalRoutesData";
 import RouteWithPermissions from "./RouteWithPermission";
 
 const InternalRoutes = () => {
   return (
     <Switch>
-      {routeData.map(({ path, component, permission, exact }, i) => {
+      {internalRoutesData.map(({ path, component, permission, exact }, i) => {
         if (permission) {
           return (
             <RouteWithPermissions

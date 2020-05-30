@@ -6,13 +6,14 @@ export const apiHelpers = {
   getRequest,
   formatPromiseResponse,
   interpretErrorResponse,
+  formatSuccessResponse
 };
 
 function authHeader() {
   let user = JSON.parse(localStorage.getItem(SMITE_USER));
 
-  if (user && user.access_token) {
-    return { Authorization: `Bearer ${user.access_token}` };
+  if (user && user.token) {
+    return { Authorization: `Bearer ${user.token}` };
   }
   return {};
 }
@@ -41,6 +42,11 @@ function getRequest(url) {
 function formatPromiseResponse(res, resType) {
   let responseType = resType === undefined ? SUCCESS_RESPONSE : resType;
   return { status: responseType, response: res };
+}
+
+function formatSuccessResponse(res, resType) {
+  let responseType = resType === undefined ? SUCCESS_RESPONSE : resType;
+  return { status: responseType, response: res.data.responseData  };
 }
 
 function interpretErrorResponse(error) {

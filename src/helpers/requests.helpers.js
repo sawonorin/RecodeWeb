@@ -8,14 +8,14 @@ export const requestsService = {
 
 /**
  * 
- * @param {*} requestUrl 
+ * @param {String} requestUrl 
  */
 function makeGetRequest(requestUrl) {
   return apiHelpers
     .getRequest(`${BASE_API_URL}${requestUrl}`)
     .then((response) => {
       if (response.status === 200 || response.status === 201) {
-        return apiHelpers.formatPromiseResponse(response);
+        return apiHelpers.formatSuccessResponse(response);
       } else {
         return apiHelpers.formatPromiseResponse(
           response.response.data,
@@ -39,7 +39,7 @@ function makePostRequest(requestUrl, payload) {
     .postRequest(`${BASE_API_URL}${requestUrl}`, payload)
     .then((response) => {
       if (response.status === 200 || response.status === 201) {
-        return apiHelpers.formatPromiseResponse(response);
+        return apiHelpers.formatSuccessResponse(response);
       } else {
         return apiHelpers.formatPromiseResponse(
           response.response.data,

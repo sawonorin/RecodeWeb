@@ -1,1 +1,1 @@
-export const SMITE_USER = "SMITE_USER";
+export const SMITE_USER = "smite_user";

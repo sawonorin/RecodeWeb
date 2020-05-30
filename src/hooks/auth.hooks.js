@@ -24,13 +24,11 @@ function useLogin() {
 
       if (res.status === SUCCESS_RESPONSE) {
         setLoginResponse({ user: res.response }); //Update user
+        localStorage.setItem(SMITE_USER, JSON.stringify(res.response));
+        history.push("/dashboard");
       }
       if (res.status === ERROR_RESPONSE) {
         setLoginResponse({ error: res.response }); //show error message
-
-        //Remove later
-        localStorage.setItem(SMITE_USER, { access_token: "fdfdfd"});
-        history.push("/dashboard");
       }
     });
   }

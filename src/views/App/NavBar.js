@@ -11,6 +11,7 @@ const NavBar = () => {
       inverted
       color="purple"
       style={{ borderTopLeftRadius: 0, borderTopRightRadius: 0 }}
+      size="large"
     >
       <Menu.Item>
         <img src="https://react.semantic-ui.com/logo.png" alt="company logo" />

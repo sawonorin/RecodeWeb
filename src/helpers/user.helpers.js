@@ -1,7 +1,8 @@
 import { SMITE_USER } from "../constants";
 
-export const localUserState = () => {
-  return JSON.parse(localStorage.getItem(SMITE_USER));
+export const getUser = () => {
+  let localUser = JSON.parse(localStorage.getItem(SMITE_USER));
+  return localUser;
 };
 
 export const removeItemFromLocalStorage = () => {

@@ -2,10 +2,10 @@ import Dashboard from "../views/Dashboard/Dashboard";
 import AllCompanies from "../views/Company/AllCompanies";
 
 //Route Object
-export const routeData = [
+export const internalRoutesData = [
   { path: ["/", "/dashboard"], component: Dashboard, exact: true },
   {
-    path: "/company/view",
+    path: "/companies/all",
     component: AllCompanies,
     exact: true,
   },

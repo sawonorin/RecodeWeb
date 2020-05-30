@@ -1,5 +1,5 @@
 import React from "react";
-import { Grid, Segment } from "semantic-ui-react";
+import { Grid } from "semantic-ui-react";
 import InternalRoutes from "../../routes/InternalRoutes";
 import NavBar from "./NavBar";
 import SideBar from "./SideBar";
@@ -16,11 +16,7 @@ const App = () => {
             <NavBar />
           </Grid.Row>
           <Grid.Row style={{ marginTop: 15 }}>
-            <Segment padded>
-              This is an stretched grid column. This segment will always match
-              the tab height
-              <InternalRoutes />
-            </Segment>
+            <InternalRoutes />
           </Grid.Row>
         </Grid.Column>
       </Grid.Row>
