@@ -1,8 +1,9 @@
 import { SMITE_USER } from "../constants";
 import { getItemFromLocalStorage } from "./app.helpers";
 
-export const getUser = () => {
+export const getUserDetails = () => {
   let user = getItemFromLocalStorage(SMITE_USER);
+  console.log(user)
   return user
 };
 

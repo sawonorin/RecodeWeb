@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Menu, Dropdown, Segment, Header, Image } from "semantic-ui-react";
 import { NavLink } from "react-router-dom";
 import Avater from "../../assets/images/avater.png"
+import { getUserDetails } from "../../helpers";
 
 const menuItems = [
   {
@@ -54,7 +55,7 @@ const SideBar = () => {
             src={Avater}
           />
           <span style={{ display: "block", fontSize: 15, color: "white" }}>
-            Patrick
+            {getUserDetails.name}
           </span>
         </Header>
       </Menu.Item>

@@ -22,17 +22,20 @@ const AllCompanies = () => {
   } = companyHooks.useGetAllCompanies(filterParams);
 
   /** Create */
-  const [formParams, setFormParams] = useState({
+  const initialFormParams = {
     id: "",
     name: "",
     code: "",
-  });
+  };
+
+  const [formParams, setFormParams] = useState(initialFormParams);
 
   const { createCompany } = companyHooks.useCreateCompany();
 
   const create = () => {
     createCompany(formParams);
     getAllCompanies(filterParams);
+    setFormParams(initialFormParams);
   };
 
   //Update Company
@@ -41,6 +44,7 @@ const AllCompanies = () => {
   const update = () => {
     updateCompany(formParams);
     getAllCompanies(filterParams);
+    setFormParams(initialFormParams);
   };
 
   /**Pagination */
@@ -71,10 +75,12 @@ const AllCompanies = () => {
           formParams={formParams}
           setFormParams={setFormParams}
           saveCompany={update}
+          initialFormParams={initialFormParams}
         />
       }
       primaryActions={
         <Modal
+          onClose={() => setFormParams(initialFormParams)}
           size="mini"
           trigger={<Button color="purple">Add Company</Button>}
           header="Add company"
