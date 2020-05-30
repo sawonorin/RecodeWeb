@@ -1,5 +1,6 @@
 import React from "react";
-import { Table, Popup, Button } from "semantic-ui-react";
+import { Table, Button, Modal } from "semantic-ui-react";
+import SaveCompany from "./SaveCompany";
 
 const CompaniesTable = (props) => {
   return (
@@ -20,8 +21,20 @@ const CompaniesTable = (props) => {
                 <Table.Cell>{item.name}</Table.Cell>
                 <Table.Cell>{item.code}</Table.Cell>
                 <Table.Cell>
-                  <Popup content="Edit" trigger={<Button icon="edit"/>} />
-                  <Popup content="View" trigger={<Button icon="eye" />} />
+                  <Modal
+                    size="mini"
+                    trigger={<Button icon="edit" label="Edit" />}
+                    header="Update company"
+                    content={
+                      <div style={{ margin: "20px" }}>
+                        <SaveCompany />
+                      </div>
+                    }
+                    actions={[
+                      "Cancel",
+                      { key: "done", content: "Update Company", positive: true },
+                    ]}
+                  />
                 </Table.Cell>
               </Table.Row>
             ))}

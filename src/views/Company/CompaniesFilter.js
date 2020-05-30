@@ -22,7 +22,7 @@ const CompaniesFilter = (props) => {
         <Form.Field
           label="Code"
           control="input"
-          placeholder="e.g SMG"
+          placeholder="e.g SG"
           value={companyParams.code}
           onChange={(e) =>
             setCompanyParams({
