@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Menu, Dropdown, Segment, Header, Image } from "semantic-ui-react";
 import { NavLink } from "react-router-dom";
-import Avater from "../../assets/images/avater.png"
+import Avater from "../../assets/images/avater.png";
 import { getUserDetails } from "../../helpers";
 
 const menuItems = [
@@ -50,17 +50,16 @@ const SideBar = () => {
       </Menu.Item>
       <Menu.Item>
         <Header as="h2" textAlign="center">
-          <Image
-            circular
-            src={Avater}
-          />
+          <Image circular src={Avater} />
           <span style={{ display: "block", fontSize: 15, color: "white" }}>
-            {getUserDetails.name}
+            {getUserDetails().firstName +
+              " " +
+              getUserDetails().lastName}
           </span>
         </Header>
       </Menu.Item>
 
-      {menuItems.map((item,i) => (
+      {menuItems.map((item, i) => (
         <Menu.Item
           as={NavLink}
           to={item.to}
@@ -71,7 +70,7 @@ const SideBar = () => {
           key={`Menu Item ${i}`}
         />
       ))}
-      
+
       <Dropdown item text="More">
         <Dropdown.Menu>
           <Dropdown.Item icon="edit" text="Edit Profile" />

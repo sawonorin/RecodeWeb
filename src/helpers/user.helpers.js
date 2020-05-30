@@ -2,9 +2,8 @@ import { SMITE_USER } from "../constants";
 import { getItemFromLocalStorage } from "./app.helpers";
 
 export const getUserDetails = () => {
-  let user = getItemFromLocalStorage(SMITE_USER);
-  console.log(user)
-  return user
+  let loggedInUser = getItemFromLocalStorage(SMITE_USER);
+  return loggedInUser.user
 };
 
 export const checkIfUserHasPermission = (permissionArray, Singlepermission) => {
