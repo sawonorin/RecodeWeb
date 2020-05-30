@@ -8,9 +8,6 @@ const PageLayout = (props) => {
         <Card fluid>
           {props.searchPanel && (
             <Card.Content style={{ backgroundColor: "gray", margin: "10px" }}>
-              <Header as="h4" style={{ color: "white" }}>
-                {props.searchPanelTitle}
-              </Header>
               {props.searchPanel}
             </Card.Content>
           )}

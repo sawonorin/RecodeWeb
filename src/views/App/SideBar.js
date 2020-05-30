@@ -38,7 +38,7 @@ const SideBar = () => {
       vertical
       pointing
       inverted
-      style={{ minHeight: "100vh", borderRadius: 0 }}
+      style={{ minHeight: "100%", borderRadius: 0 }}
       size="large"
     >
       <Menu.Item>

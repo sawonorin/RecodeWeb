@@ -7,10 +7,11 @@ import CompaniesFilter from "./CompaniesFilter";
 import SaveCompany from "./SaveCompany";
 
 const AllCompanies = () => {
-  const [companyParams, setCompanyParams] = useState({
+  /** Filter */
+  const [filterParams, setFilterParams] = useState({
     name: "",
     code: "",
-    pageSize: 10,
+    pageSize: 20,
     pageNo: 0,
   });
 
@@ -18,17 +19,41 @@ const AllCompanies = () => {
     loading,
     allCompaniesResponse,
     getAllCompanies,
-  } = companyHooks.useGetAllCompanies(companyParams);
-  console.log(companyParams.pageNo);
+  } = companyHooks.useGetAllCompanies(filterParams);
+
+  /** Create */
+  const [formParams, setFormParams] = useState({
+    name: "",
+    code: "",
+  });
+
+  const { createCompany } = companyHooks.useCreateCompany();
+
+  const create = () => {
+    createCompany(formParams);
+    getAllCompanies(filterParams);
+  };
+
+  /**Pagination */
+  const onPageChange = (value) => {
+    setFilterParams({
+      ...filterParams,
+      pageNo: value,
+    });
+    getAllCompanies(filterParams);
+  };
+
+  console.log(filterParams.pageNo);
+
   return (
     <div>
       <PageLayout
         title="All Companies"
-        searchPanelTitle="Filter Companies"
         searchPanel={
           <CompaniesFilter
-            companyParams={companyParams}
-            setCompanyParams={setCompanyParams}
+            searchPanelTitle="Filter Companies"
+            filterParams={filterParams}
+            setFilterParams={setFilterParams}
             getAllCompanies={getAllCompanies}
             loading={loading}
           />
@@ -37,6 +62,8 @@ const AllCompanies = () => {
           <CompaniesTable
             loading={loading}
             allCompaniesResponse={allCompaniesResponse}
+            formParams={formParams}
+            setFormParams={setFormParams}
           />
         }
         primaryActions={
@@ -46,27 +73,32 @@ const AllCompanies = () => {
             header="Add company"
             content={
               <div style={{ margin: "20px" }}>
-                <SaveCompany />
+                <SaveCompany
+                  formParams={formParams}
+                  setFormParams={setFormParams}
+                />
               </div>
             }
             actions={[
-              "Cancel",
-              { key: "done", content: "Add Company", positive: true },
+              {
+                key: "Cancel",
+                content: "Cancel",
+              },
+              {
+                key: "done",
+                content: "Add Company",
+                positive: true,
+                onClick: () => create(),
+                // loading,
+              },
             ]}
           />
         }
         secondaryActions={
           <Pagination
-            activePage={companyParams.pageNo + 1}
+            activePage={filterParams.pageNo + 1}
             totalPages={5}
-            onPageChange={
-              (e, { value }) =>
-                setCompanyParams({
-                  ...companyParams,
-                  pageNo: value,
-                })
-              // getAllCompanies(companyParams)
-            }
+            onPageChange={(e, { activePage }) => onPageChange(activePage + 1)}
           />
         }
       />

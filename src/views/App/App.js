@@ -6,9 +6,12 @@ import SideBar from "./SideBar";
 
 const App = () => {
   return (
-    <Grid divided style={{ paddingRight: 15 }}>
+    <Grid style={{ paddingRight: 15 }}>
       <Grid.Row style={{ paddingBottom: 0 }}>
-        <Grid.Column width={4}>
+        <Grid.Column
+          width={4}
+          style={{ /*overflowY: "scroll",*/ backgroundColor: "#a333c8" }}
+        >
           <SideBar />
         </Grid.Column>
         <Grid.Column width={12} style={{ minHeight: "100vh" }}>

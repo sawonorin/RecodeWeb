@@ -1,12 +1,9 @@
 import { SMITE_USER } from "../constants";
+import { getItemFromLocalStorage } from "./app.helpers";
 
 export const getUser = () => {
-  let localUser = JSON.parse(localStorage.getItem(SMITE_USER));
-  return localUser;
-};
-
-export const removeItemFromLocalStorage = () => {
-  return localStorage.removeItem(SMITE_USER);
+  let user = getItemFromLocalStorage(SMITE_USER);
+  return user
 };
 
 export const checkIfUserHasPermission = (permissionArray, Singlepermission) => {

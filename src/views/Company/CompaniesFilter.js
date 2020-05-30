@@ -1,20 +1,23 @@
 import React from "react";
-import { Form } from "semantic-ui-react";
+import { Form, Header } from "semantic-ui-react";
 
 const CompaniesFilter = (props) => {
-  const { companyParams, setCompanyParams, getAllCompanies, loading } = props;
+  const { filterParams, setFilterParams, getAllCompanies, loading } = props;
 
   return (
-    <Form inverted onSubmit={() => getAllCompanies(companyParams)}>
+    <Form inverted onSubmit={() => getAllCompanies(filterParams)}>
+      <Header as="h4" style={{ color: "white" }}>
+        {props.searchPanelTitle}
+      </Header>
       <Form.Group widths="equal">
         <Form.Field
           label="Name"
           control="input"
           placeholder="e.g Smite Group"
-          value={companyParams.name}
+          value={filterParams.name}
           onChange={(e) =>
-            setCompanyParams({
-              ...companyParams,
+            setFilterParams({
+              ...filterParams,
               name: e.target.value,
             })
           }
@@ -23,10 +26,10 @@ const CompaniesFilter = (props) => {
           label="Code"
           control="input"
           placeholder="e.g SG"
-          value={companyParams.code}
+          value={filterParams.code}
           onChange={(e) =>
-            setCompanyParams({
-              ...companyParams,
+            setFilterParams({
+              ...filterParams,
               code: e.target.value,
             })
           }

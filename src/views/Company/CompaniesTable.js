@@ -3,9 +3,10 @@ import { Table, Button, Modal } from "semantic-ui-react";
 import SaveCompany from "./SaveCompany";
 
 const CompaniesTable = (props) => {
+  const { formParams, setFormParams } = props;
   return (
     <div>
-      <Table singleLine>
+      <Table fixed>
         <Table.Header>
           <Table.Row>
             <Table.HeaderCell>Name</Table.HeaderCell>
@@ -27,12 +28,19 @@ const CompaniesTable = (props) => {
                     header="Update company"
                     content={
                       <div style={{ margin: "20px" }}>
-                        <SaveCompany />
+                        <SaveCompany
+                          formParams={formParams}
+                          setFormParams={setFormParams}
+                        />
                       </div>
                     }
                     actions={[
                       "Cancel",
-                      { key: "done", content: "Update Company", positive: true },
+                      {
+                        key: "done",
+                        content: "Update Company",
+                        positive: true,
+                      },
                     ]}
                   />
                 </Table.Cell>
