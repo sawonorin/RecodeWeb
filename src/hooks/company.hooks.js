@@ -7,6 +7,7 @@ import { companyService } from "../services/company.service";
 export const companyHooks = {
   useGetAllCompanies,
   useCreateCompany,
+  useUpdateCompany
 };
 
 function useGetAllCompanies(companyParams) {
@@ -62,4 +63,28 @@ function useCreateCompany() {
   }
 
   return { ...state, createCompanyResponse, createCompany };
+}
+
+function useUpdateCompany() {
+  const initialState = { company: "", error: "" };
+  const [updateCompanyResponse, setResponse] = useState(initialState);
+  const [state, dispatch] = useReducer(apiReducer, { loading: false });
+
+  function updateCompany(payload) {
+    setResponse(initialState);
+    dispatch(apiActions.startRequest());
+
+    return companyService.updateCompany(payload).then((res) => {
+      dispatch(apiActions.endRequest());
+
+      if (res.status === SUCCESS_RESPONSE) {
+        setResponse({ company: res.response });
+      }
+      if (res.status === ERROR_RESPONSE) {
+        setResponse({ error: res.response });
+      }
+    });
+  }
+
+  return { ...state, updateCompanyResponse, updateCompany };
 }

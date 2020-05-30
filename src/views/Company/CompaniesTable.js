@@ -3,7 +3,7 @@ import { Table, Button, Modal } from "semantic-ui-react";
 import SaveCompany from "./SaveCompany";
 
 const CompaniesTable = (props) => {
-  const { formParams, setFormParams } = props;
+  const { formParams, setFormParams, saveCompany } = props;
   return (
     <div>
       <Table fixed>
@@ -24,7 +24,13 @@ const CompaniesTable = (props) => {
                 <Table.Cell>
                   <Modal
                     size="mini"
-                    trigger={<Button icon="edit" label="Edit" />}
+                    trigger={
+                      <Button
+                        icon="edit"
+                        label="Edit"
+                        onClick={() => setFormParams(item)}
+                      />
+                    }
                     header="Update company"
                     content={
                       <div style={{ margin: "20px" }}>
@@ -40,6 +46,7 @@ const CompaniesTable = (props) => {
                         key: "done",
                         content: "Update Company",
                         positive: true,
+                        onClick: () => saveCompany(),
                       },
                     ]}
                   />

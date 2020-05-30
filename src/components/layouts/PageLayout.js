@@ -16,7 +16,7 @@ const PageLayout = (props) => {
               <Grid columns={2}>
                 <Grid.Row>
                   <Grid.Column>
-                    <Header as="h2">{props.title}</Header>
+                    <Header as="h3">{props.title}</Header>
                   </Grid.Column>
                   <Grid.Column textAlign="right">
                     {props.primaryActions}

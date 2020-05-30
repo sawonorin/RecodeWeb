@@ -35,7 +35,7 @@ const CompaniesFilter = (props) => {
           }
         />
         <Form.Field width={3}>
-          <label style={{ visibility: "hidden" }}>Hidden lablel</label>
+          <label style={{ visibility: "hidden" }}>Hide</label>
           <Form.Button
             loading={loading}
             type="submit"

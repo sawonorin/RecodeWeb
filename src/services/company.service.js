@@ -18,7 +18,7 @@ function createCompany(payload) {
 }
 
 function updateCompany(payload) {
-  return requestsService.makePostRequest(`${UPDATE_COMPANY}`, payload);
+  return requestsService.makePutRequest(`${UPDATE_COMPANY}`, payload);
 }
 
 function getAllCompanies(payload) {

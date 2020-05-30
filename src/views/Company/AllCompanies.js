@@ -23,6 +23,7 @@ const AllCompanies = () => {
 
   /** Create */
   const [formParams, setFormParams] = useState({
+    id: "",
     name: "",
     code: "",
   });
@@ -31,6 +32,14 @@ const AllCompanies = () => {
 
   const create = () => {
     createCompany(formParams);
+    getAllCompanies(filterParams);
+  };
+
+  //Update Company
+  const { updateCompany } = companyHooks.useUpdateCompany();
+
+  const update = () => {
+    updateCompany(formParams);
     getAllCompanies(filterParams);
   };
 
@@ -43,66 +52,62 @@ const AllCompanies = () => {
     getAllCompanies(filterParams);
   };
 
-  console.log(filterParams.pageNo);
-
   return (
-    <div>
-      <PageLayout
-        title="All Companies"
-        searchPanel={
-          <CompaniesFilter
-            searchPanelTitle="Filter Companies"
-            filterParams={filterParams}
-            setFilterParams={setFilterParams}
-            getAllCompanies={getAllCompanies}
-            loading={loading}
-          />
-        }
-        body={
-          <CompaniesTable
-            loading={loading}
-            allCompaniesResponse={allCompaniesResponse}
-            formParams={formParams}
-            setFormParams={setFormParams}
-          />
-        }
-        primaryActions={
-          <Modal
-            size="mini"
-            trigger={<Button color="purple">Add Company</Button>}
-            header="Add company"
-            content={
-              <div style={{ margin: "20px" }}>
-                <SaveCompany
-                  formParams={formParams}
-                  setFormParams={setFormParams}
-                />
-              </div>
-            }
-            actions={[
-              {
-                key: "Cancel",
-                content: "Cancel",
-              },
-              {
-                key: "done",
-                content: "Add Company",
-                positive: true,
-                onClick: () => create(),
-                // loading,
-              },
-            ]}
-          />
-        }
-        secondaryActions={
-          <Pagination
-            activePage={filterParams.pageNo + 1}
-            totalPages={5}
-            onPageChange={(e, { activePage }) => onPageChange(activePage + 1)}
-          />
-        }
-      />
-    </div>
+    <PageLayout
+      title="Companies"
+      searchPanel={
+        <CompaniesFilter
+          searchPanelTitle="Filter Companies"
+          filterParams={filterParams}
+          setFilterParams={setFilterParams}
+          getAllCompanies={getAllCompanies}
+          loading={loading}
+        />
+      }
+      body={
+        <CompaniesTable
+          loading={loading}
+          allCompaniesResponse={allCompaniesResponse}
+          formParams={formParams}
+          setFormParams={setFormParams}
+          saveCompany={update}
+        />
+      }
+      primaryActions={
+        <Modal
+          size="mini"
+          trigger={<Button color="purple">Add Company</Button>}
+          header="Add company"
+          content={
+            <div style={{ margin: "20px" }}>
+              <SaveCompany
+                formParams={formParams}
+                setFormParams={setFormParams}
+              />
+            </div>
+          }
+          actions={[
+            {
+              key: "Cancel",
+              content: "Cancel",
+            },
+            {
+              key: "done",
+              content: "Add Company",
+              positive: true,
+              onClick: () => create(),
+            },
+          ]}
+        />
+      }
+      secondaryActions={
+        <Pagination
+          activePage={filterParams.pageNo}
+          totalPages={5}
+          onPageChange={(e, { activePage }) => onPageChange(activePage)}
+        />
+      }
+    />
   );
 };
 

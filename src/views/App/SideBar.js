@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Menu, Dropdown, Segment, Header, Image } from "semantic-ui-react";
 import { NavLink } from "react-router-dom";
+import Avater from "../../assets/images/avater.png"
 
 const menuItems = [
   {
@@ -50,7 +51,7 @@ const SideBar = () => {
         <Header as="h2" textAlign="center">
           <Image
             circular
-            src="https://react.semantic-ui.com/images/avatar/large/patrick.png"
+            src={Avater}
           />
           <span style={{ display: "block", fontSize: 15, color: "white" }}>
             Patrick
@@ -58,7 +59,7 @@ const SideBar = () => {
         </Header>
       </Menu.Item>
 
-      {menuItems.map((item) => (
+      {menuItems.map((item,i) => (
         <Menu.Item
           as={NavLink}
           to={item.to}
@@ -66,6 +67,7 @@ const SideBar = () => {
           name={item.name}
           onClick={(e) => handleItemClick(e.target.name)}
           icon={item.icon}
+          key={`Menu Item ${i}`}
         />
       ))}
       

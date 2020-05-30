@@ -28,11 +28,10 @@ const NavBar = () => {
       />
 
       <Menu.Menu position="right">
-        <Dropdown item text="Language">
+        <Dropdown item text="Account Settings">
           <Dropdown.Menu>
-            <Dropdown.Item>English</Dropdown.Item>
-            <Dropdown.Item>Russian</Dropdown.Item>
-            <Dropdown.Item>Spanish</Dropdown.Item>
+            <Dropdown.Item>Profile</Dropdown.Item>
+            <Dropdown.Item>Others</Dropdown.Item>
           </Dropdown.Menu>
         </Dropdown>
 

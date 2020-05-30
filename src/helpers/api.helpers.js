@@ -4,9 +4,10 @@ import { SUCCESS_RESPONSE, SMITE_USER } from "../constants";
 export const apiHelpers = {
   postRequest,
   getRequest,
+  putRequest,
   formatPromiseResponse,
   interpretErrorResponse,
-  formatSuccessResponse
+  formatSuccessResponse,
 };
 
 function authHeader() {
@@ -39,6 +40,13 @@ function getRequest(url) {
     });
 }
 
+function putRequest(url, payload) {
+  const header = authHeader();
+  let reqHeader = header ? header : { "Content-Type": "application/json" };
+  let config = { headers: reqHeader };
+  return axios.put(url, payload, config);
+}
+
 function formatPromiseResponse(res, resType) {
   let responseType = resType === undefined ? SUCCESS_RESPONSE : resType;
   return { status: responseType, response: res };
@@ -46,7 +54,7 @@ function formatPromiseResponse(res, resType) {
 
 function formatSuccessResponse(res, resType) {
   let responseType = resType === undefined ? SUCCESS_RESPONSE : resType;
-  return { status: responseType, response: res.data.responseData  };
+  return { status: responseType, response: res.data.responseData };
 }
 
 function interpretErrorResponse(error) {
