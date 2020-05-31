@@ -6,16 +6,19 @@ import { switchTheme, localThemeState } from "./helpers";
 import ThemeProvider from "./context/theme/ThemeProvider";
 import ExternalRoutes from "./routes/externalRoutes";
 import { defaultTheme } from "./constants";
-import 'semantic-ui-css/semantic.min.css'
+import "semantic-ui-css/semantic.min.css";
+import { StateProvider } from "./context/store/Store";
 
 //set default theme
 switchTheme(localThemeState ? localThemeState : defaultTheme);
 
 ReactDOM.render(
   <React.StrictMode>
-    <ThemeProvider>
-      <ExternalRoutes />
-    </ThemeProvider>
+    <StateProvider>
+      <ThemeProvider>
+        <ExternalRoutes />
+      </ThemeProvider>
+    </StateProvider>
   </React.StrictMode>,
   document.getElementById("root")
 );

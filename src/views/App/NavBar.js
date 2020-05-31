@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import { Button, Dropdown, Menu } from "semantic-ui-react";
-import { Link } from "react-router-dom";
+import { authHooks } from "../../hooks";
 
 const NavBar = () => {
   const [activeItem, handleItemClick] = useState("home");
+  const { logOut } = authHooks.useLogOut();
 
   return (
     <Menu
@@ -36,9 +37,7 @@ const NavBar = () => {
         </Dropdown>
 
         <Menu.Item>
-          <Button as={Link} to="/">
-            Logout
-          </Button>
+          <Button onClick={() => logOut()}>Logout</Button>
         </Menu.Item>
       </Menu.Menu>
     </Menu>
