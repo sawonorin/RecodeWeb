@@ -45,16 +45,14 @@ const SideBar = () => {
     >
       <Menu.Item>
         <Segment textAlign="center" inverted color="purple">
-          <Header>HIRE WELL</Header>
+          <Header className="pulsate">HIRE WELL</Header>
         </Segment>
       </Menu.Item>
       <Menu.Item>
         <Header as="h2" textAlign="center">
           <Image circular src={Avater} />
           <span style={{ display: "block", fontSize: 15, color: "white" }}>
-            {getUserDetails().firstName +
-              " " +
-              getUserDetails().lastName}
+            {getUserDetails().firstName + " " + getUserDetails().lastName}
           </span>
         </Header>
       </Menu.Item>

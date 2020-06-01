@@ -40,8 +40,8 @@ const LoginForm = () => {
       <Grid.Column
         className="bounce-in-top"
         style={{
-          animationDuration: "2s",
-          animationIterationCount: "5s",
+          animationDuration: "3s",
+          animationIterationCount: "1",
           maxWidth: 400,
           minHeight: 400,
           paddingTop: "60px",
@@ -111,7 +111,7 @@ const LoginForm = () => {
           </Segment>
         </Form>
         <Message>
-          New to us? <a href="/#">Sign Up</a>
+          New to us? <a href="/">Sign Up</a>
         </Message>
       </Grid.Column>
     </Grid>
