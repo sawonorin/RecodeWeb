@@ -29,18 +29,32 @@ const LoginForm = () => {
       textAlign="center"
       style={{
         height: "100vh",
-        backgroundColor: "purple",
         backgroundImage: `url(${Hiring})`,
         backgroundSize: "cover",
         backgroundRepeat: "no-repeat",
-        backgroundBlendMode: "soft-light",
+        backgroundColor: "purple",
+        // backgroundBlendMode: "soft-light",
         margin: 0,
       }}
-      verticalAlign="middle"
     >
-      <Grid.Column style={{ maxWidth: 450 }}>
+      <Grid.Column
+        className="bounce-in-top"
+        style={{
+          animationDuration: "2s",
+          animationIterationCount: "5s",
+          maxWidth: 400,
+          minHeight: 400,
+          paddingTop: "60px",
+          borderRadius: "15px",
+          background:
+            "linear-gradient(to bottom, purple -50%, rgba(0,0,0,0.6) 100%)",
+          position: "absolute",
+          top: "10%",
+          left: "10%",
+        }}
+      >
         <Header as="h2" inverted textAlign="center">
-          {/*<Image src='/logo.png' />*/} Log-in to your account
+          {/*<Image src='/logo.png' />*/} Login
         </Header>
 
         {loginResponse.error && visible && (
@@ -50,7 +64,13 @@ const LoginForm = () => {
         )}
 
         <Form size="large" onSubmit={() => handleLogin()}>
-          <Segment stacked>
+          <Segment
+            stacked
+            style={{
+              background: "transparent",
+              border: "transparent",
+            }}
+          >
             <Form.Input
               fluid
               icon="user"
