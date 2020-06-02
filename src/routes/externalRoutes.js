@@ -3,7 +3,7 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 import Homepage from "../views/HomePage/Homepage";
 import LoginForm from "../views/Auth/Login";
 import AuthenticatedRoute from "./AuthenticatedRoute";
-import App from "../views/App/App";
+import AppLayout from "../views/AppLayout";
 
 const externalRoutes = () => {
   return (
@@ -11,7 +11,7 @@ const externalRoutes = () => {
       <Switch>
         <Route exact path="/" component={Homepage} />
         <Route exact path="/login" component={LoginForm} />
-        <AuthenticatedRoute component={App} path="/" />
+        <AuthenticatedRoute component={AppLayout} path="/" />
       </Switch>
     </BrowserRouter>
   );

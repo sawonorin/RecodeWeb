@@ -59,23 +59,18 @@ function formatSuccessResponse(res, resType) {
 
 function interpretErrorResponse(error) {
   let errorMessage = "";
-  if (error.response) {
-    // client received an error response (5xx, 4xx)
-    errorMessage = "---";
-  } else if (error.request) {
-    console.log("error",error.request)
-    // client never received a response, or request never left
-    errorMessage = "Please check your internet connectivity!";
-  } else {
-    errorMessage = error.response.data
-      ? error.response.data.message
+    if (error.response === undefined) {
+      errorMessage = "Unable to connect to the API Service";
+    } else {
+      errorMessage = error.response.data
         ? error.response.data.message
-        : error.response.data
-      : "Unable to handle request";
-  }
-  if (typeof errorMessage === "string") {
-    return errorMessage;
-  } else {
-    return "Something went wrong!";
-  }
+          ? error.response.data.message
+          : error.response.data
+        : "Unable to handle request";
+    }
+    if (typeof errorMessage === "string") {
+      return errorMessage;
+    } else {
+      return "Something went wrong!";
+    }
 }

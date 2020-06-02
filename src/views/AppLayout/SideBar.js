@@ -16,6 +16,11 @@ const menuItems = [
     icon: "user",
   },
   {
+    to: "/interviews/all",
+    name: "interviews",
+    icon: "group",
+  },
+  {
     to: "/companies/all",
     name: "companies",
     icon: "industry",
@@ -69,11 +74,9 @@ const SideBar = () => {
         />
       ))}
 
-      <Dropdown item text="More">
+      <Dropdown item text="Roles and Permissions">
         <Dropdown.Menu>
-          <Dropdown.Item icon="edit" text="Edit Profile" />
-          <Dropdown.Item icon="globe" text="Choose Language" />
-          <Dropdown.Item icon="settings" text="Account Settings" />
+          <Dropdown.Item icon="globe" text="Manage Roles" />
         </Dropdown.Menu>
       </Dropdown>
     </Menu>

@@ -1,5 +1,5 @@
 import { apiHelpers } from "./api.helpers";
-import { ERROR_RESPONSE, BASE_API_URL } from "../constants";
+import { ERROR_RESPONSE, REACT_APP_BASE_API_URL } from "../constants";
 
 export const requestsService = {
   makeGetRequest,
@@ -13,7 +13,7 @@ export const requestsService = {
  */
 function makeGetRequest(requestUrl) {
   return apiHelpers
-    .getRequest(`${BASE_API_URL}${requestUrl}`)
+    .getRequest(`${REACT_APP_BASE_API_URL}${requestUrl}`)
     .then((response) => {
       if (response.status === 200 || response.status === 201) {
         return apiHelpers.formatSuccessResponse(response);
@@ -37,7 +37,7 @@ function makeGetRequest(requestUrl) {
  */
 function makePostRequest(requestUrl, payload) {
   return apiHelpers
-    .postRequest(`${BASE_API_URL}${requestUrl}`, payload)
+    .postRequest(`${REACT_APP_BASE_API_URL}${requestUrl}`, payload)
     .then((response) => {
       if (response.status === 200 || response.status === 201) {
         return apiHelpers.formatSuccessResponse(response);
@@ -61,7 +61,7 @@ function makePostRequest(requestUrl, payload) {
  */
 function makePutRequest(requestUrl, payload) {
   return apiHelpers
-    .putRequest(`${BASE_API_URL}${requestUrl}`, payload)
+    .putRequest(`${REACT_APP_BASE_API_URL}${requestUrl}`, payload)
     .then((response) => {
       if (response.status === 200 || response.status === 201) {
         return apiHelpers.formatSuccessResponse(response);

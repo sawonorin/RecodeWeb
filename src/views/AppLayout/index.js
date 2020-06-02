@@ -4,7 +4,7 @@ import InternalRoutes from "../../routes/InternalRoutes";
 import NavBar from "./NavBar";
 import SideBar from "./SideBar";
 
-const App = () => {
+const AppLayout = () => {
   return (
     <Grid style={{ paddingRight: 15 }}>
       <Grid.Row style={{ paddingBottom: 0 }}>
@@ -27,4 +27,4 @@ const App = () => {
   );
 };
 
-export default App;
+export default AppLayout;
