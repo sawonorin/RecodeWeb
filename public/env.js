@@ -1,4 +1,4 @@
 window.env = {
-  baseApiUrl: "#{baseApiUrl}",
-  captchaKey: "#{captchaKey}"
+  baseApiUrl: "#{REACT_APP_BASE_API_URL}",
+  captchaKey: "#{CAPTCHA_KEY}"
 };
