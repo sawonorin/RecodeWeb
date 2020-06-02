@@ -3,7 +3,15 @@ import { Card, Grid, Header } from "semantic-ui-react";
 
 const PageLayout = (props) => {
   return (
-    <Grid columns={1} padded>
+    <Grid
+      columns={1}
+      padded
+      className="swing-in-top-fwd"
+      style={{
+        animationDuration: "3s",
+        animationIterationCount: "1",
+      }}
+    >
       <Grid.Row>
         <Card fluid>
           {props.searchPanel && (
