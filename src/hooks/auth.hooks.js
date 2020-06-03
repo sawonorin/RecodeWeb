@@ -1,17 +1,15 @@
-import { useState, useReducer, useContext } from "react";
+import { useState, useReducer } from "react";
 import { authService } from "../services/auth.service";
 import {
   SUCCESS_RESPONSE,
   ERROR_RESPONSE,
   SMITE_USER,
   GLOBAL_STATE,
-  CLEAR_STORE,
 } from "../constants";
 import { apiReducer } from "../reducers";
 import { apiActions } from "../actions";
 import { useHistory } from "react-router-dom";
 import { setItemInLocalStorage, removeItemFromLocalStorage } from "../helpers";
-import { store } from "../context/store/Store";
 
 export const authHooks = {
   useLogin,
@@ -46,12 +44,12 @@ function useLogin() {
 }
 
 function useLogOut() {
-  const globalState = useContext(store);
-  const { dispatch } = globalState;
+  // const globalState = useContext(store);
+  // const { dispatch } = globalState;
   const history = useHistory();
 
   function logOut() {
-    dispatch({ type: CLEAR_STORE });
+    // dispatch({ type: CLEAR_STORE });
     removeItemFromLocalStorage(SMITE_USER);
     removeItemFromLocalStorage(GLOBAL_STATE);
     history.push("/");

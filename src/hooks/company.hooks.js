@@ -7,7 +7,7 @@ import { companyService } from "../services/company.service";
 export const companyHooks = {
   useGetAllCompanies,
   useCreateCompany,
-  useUpdateCompany
+  useUpdateCompany,
 };
 
 function useGetAllCompanies(companyParams) {
@@ -41,7 +41,7 @@ function useGetAllCompanies(companyParams) {
   return { ...state, allCompaniesResponse, getAllCompanies };
 }
 
-function useCreateCompany() {
+function useCreateCompany(resetView) {
   const initialState = { company: "", error: "" };
   const [createCompanyResponse, setResponse] = useState(initialState);
   const [state, dispatch] = useReducer(apiReducer, { loading: false });
@@ -55,6 +55,7 @@ function useCreateCompany() {
 
       if (res.status === SUCCESS_RESPONSE) {
         setResponse({ company: res.response });
+        resetView();
       }
       if (res.status === ERROR_RESPONSE) {
         setResponse({ error: res.response });
@@ -65,7 +66,7 @@ function useCreateCompany() {
   return { ...state, createCompanyResponse, createCompany };
 }
 
-function useUpdateCompany() {
+function useUpdateCompany(resetView) {
   const initialState = { company: "", error: "" };
   const [updateCompanyResponse, setResponse] = useState(initialState);
   const [state, dispatch] = useReducer(apiReducer, { loading: false });
@@ -79,6 +80,7 @@ function useUpdateCompany() {
 
       if (res.status === SUCCESS_RESPONSE) {
         setResponse({ company: res.response });
+        resetView();
       }
       if (res.status === ERROR_RESPONSE) {
         setResponse({ error: res.response });

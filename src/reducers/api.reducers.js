@@ -6,8 +6,6 @@ export function apiReducer(state, action) {
       return { loading: true };
     case API_REQUEST_FINISH:
       return { loading: false };
-    case "reset":
-      return { loading: action.payload }; //initial State
     default:
       throw new Error();
   }

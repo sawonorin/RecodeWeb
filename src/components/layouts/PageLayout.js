@@ -20,7 +20,7 @@ const PageLayout = (props) => {
             </Card.Content>
           )}
           {props.title && (
-            <Card.Content header>
+            <Card.Content>
               <Grid columns={2}>
                 <Grid.Row>
                   <Grid.Column>

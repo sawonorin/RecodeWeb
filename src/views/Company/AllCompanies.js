@@ -5,6 +5,7 @@ import CompaniesTable from "./CompaniesTable";
 import { companyHooks } from "../../hooks";
 import CompaniesFilter from "./CompaniesFilter";
 import SaveCompany from "./SaveCompany";
+import { validationHelper } from "../../helpers";
 
 const AllCompanies = () => {
   /** Filter */
@@ -21,31 +22,27 @@ const AllCompanies = () => {
     getAllCompanies,
   } = companyHooks.useGetAllCompanies(filterParams);
 
-  /** Create */
+  /**Reset view */
   const initialFormParams = {
-    id: "",
+    id: null,
     name: "",
     code: "",
   };
 
   const [formParams, setFormParams] = useState(initialFormParams);
+  const [open, toggleModal] = useState(false);
 
-  const { createCompany } = companyHooks.useCreateCompany();
-
-  const create = () => {
-    createCompany(formParams);
+  const resetView = () => {
     getAllCompanies(filterParams);
     setFormParams(initialFormParams);
+    toggleModal(false);
   };
 
-  //Update Company
-  const { updateCompany } = companyHooks.useUpdateCompany();
+  /** Create Company */
+  const { createCompany } = companyHooks.useCreateCompany(resetView);
 
-  const update = () => {
-    updateCompany(formParams);
-    getAllCompanies(filterParams);
-    setFormParams(initialFormParams);
-  };
+  /** Update Company */
+  const { updateCompany } = companyHooks.useUpdateCompany(resetView);
 
   /**Pagination */
   const onPageChange = (value) => {
@@ -54,6 +51,34 @@ const AllCompanies = () => {
       pageNo: value,
     });
     getAllCompanies(filterParams);
+  };
+
+  const [formErrors, setFormErrors] = useState({});
+
+  /**validation */
+  const validateFormInputs = () => {
+    const { validateNonEmptyString, isFormValid } = validationHelper;
+    let error = {
+      name: validateNonEmptyString(formParams.name),
+      code: validateNonEmptyString(formParams.code),
+    };
+    console.log(error);
+    setFormErrors(error);
+    return isFormValid(formErrors);
+  };
+
+  const create = () => {
+    // if (validateFormInputs) {
+    //   return;
+    // }
+    createCompany(formParams);
+  };
+
+  const update = () => {
+    // if (validateFormInputs) {
+    //   return;
+    // }
+    updateCompany(formParams);
   };
 
   return (
@@ -74,12 +99,15 @@ const AllCompanies = () => {
           allCompaniesResponse={allCompaniesResponse}
           formParams={formParams}
           setFormParams={setFormParams}
-          saveCompany={update}
+          updateCompany={() => update()}
           initialFormParams={initialFormParams}
+          formErrors={formErrors}
         />
       }
       primaryActions={
         <Modal
+          open={open}
+          onOpen={toggleModal}
           onClose={() => setFormParams(initialFormParams)}
           size="mini"
           trigger={<Button color="purple">Add Company</Button>}
@@ -89,6 +117,7 @@ const AllCompanies = () => {
               <SaveCompany
                 formParams={formParams}
                 setFormParams={setFormParams}
+                formErrors={formErrors}
               />
             </div>
           }
@@ -96,6 +125,7 @@ const AllCompanies = () => {
             {
               key: "Cancel",
               content: "Cancel",
+              onClick: () => toggleModal(false),
             },
             {
               key: "done",

@@ -3,7 +3,7 @@ import { Table, Button, Modal } from "semantic-ui-react";
 import SaveCompany from "./SaveCompany";
 
 const CompaniesTable = (props) => {
-  const { initialFormParams, formParams, setFormParams, saveCompany } = props;
+  const { initialFormParams, formParams, setFormParams, updateCompany,formErrors } = props;
   return (
     <div>
       <Table fixed>
@@ -17,8 +17,8 @@ const CompaniesTable = (props) => {
 
         {props.allCompaniesResponse.companies && (
           <Table.Body>
-            {props.allCompaniesResponse.companies.map((item) => (
-              <Table.Row>
+            {props.allCompaniesResponse.companies.map((item, i) => (
+              <Table.Row key={`Companies table row ${i}`}>
                 <Table.Cell>{item.name}</Table.Cell>
                 <Table.Cell>{item.code}</Table.Cell>
                 <Table.Cell>
@@ -38,6 +38,7 @@ const CompaniesTable = (props) => {
                         <SaveCompany
                           formParams={formParams}
                           setFormParams={setFormParams}
+                          formErrors={formErrors}
                         />
                       </div>
                     }
@@ -50,7 +51,7 @@ const CompaniesTable = (props) => {
                         key: "done",
                         content: "Update Company",
                         positive: true,
-                        onClick: () => saveCompany(),
+                        onClick: () => updateCompany(),
                       },
                     ]}
                   />

@@ -17,10 +17,8 @@ import {
 } from "semantic-ui-react";
 import { removeItemFromLocalStorage } from "../../helpers";
 import { SMITE_USER } from "../../constants";
+import Interviewing from "../../assets/images/interview.jpg";
 
-// Heads up!
-// We using React Static to prerender our docs with server side rendering, this is a quite simple solution.
-// For more advanced usage please check Responsive docs under the "Usage" section.
 const getWidth = () => {
   const isSSR = typeof window === "undefined";
 
@@ -54,7 +52,7 @@ const HomepageHeading = ({ mobile }) => (
         marginTop: mobile ? "0.5em" : "1.5em",
       }}
     />
-    <Button primary size="huge">
+    <Button color="purple" size="huge">
       Get Started
       <Icon name="right arrow" />
     </Button>
@@ -117,7 +115,7 @@ class DesktopContainer extends Component {
                   <Button
                     as="a"
                     inverted={!fixed}
-                    primary={fixed}
+                    color="purple"
                     style={{ marginLeft: "0.5em" }}
                   >
                     Sign Up
@@ -244,12 +242,7 @@ const HomepageLayout = () => (
             </p>
           </Grid.Column>
           <Grid.Column floated="right" width={6}>
-            <Image
-              bordered
-              rounded
-              size="large"
-              src="/images/wireframe/white-image.png"
-            />
+            <Image bordered rounded size="large" src={Interviewing} />
           </Grid.Column>
         </Grid.Row>
         <Grid.Row>
@@ -276,7 +269,7 @@ const HomepageLayout = () => (
               "I shouldn't have gone with their competitor."
             </Header>
             <p style={{ fontSize: "1.33em" }}>
-              <Image avatar src="/images/avatar/large/nan.jpg" />
+              <Image avatar src={"/images/avatar/large/nan.jpg"} />
               <b>Nan</b> Chief Fun Officer Acme Toys
             </p>
           </Grid.Column>
