@@ -1,5 +1,6 @@
-import Dashboard from "../views/Dashboard/Dashboard";
-import AllCompanies from "../views/Company/AllCompanies";
+import { lazy } from "react";
+const Dashboard = lazy(() => import( "../views/Dashboard/Dashboard"));
+const AllCompanies = lazy(() => import( "../views/Company/AllCompanies"));
 
 //Route Object
 export const internalRoutesData = [
