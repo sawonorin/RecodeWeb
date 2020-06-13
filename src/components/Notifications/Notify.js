@@ -4,8 +4,7 @@ import { ActivityContext } from "../../context/activity/ActivityContext";
 
 const Notify = () => {
   const { notification, toggleNotify } = useContext(ActivityContext);
-
-  if (!notification.static) {
+  if (notification.static === false) {
     setTimeout(() => {
       toggleNotify({});
     }, 5000);

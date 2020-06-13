@@ -1,11 +1,12 @@
-import { useState, useReducer,useContext } from "react";
+import { useState, useReducer, useContext } from "react";
 import { authService } from "../services/auth.service";
 import {
   SUCCESS_RESPONSE,
   ERROR_RESPONSE,
   SMITE_USER,
   GLOBAL_STATE,
-  ERROR_COLOUR
+  ERROR_COLOUR,
+  HIRE_WELL_COLOUR,
 } from "../constants";
 import { apiReducer } from "../reducers";
 import { apiActions } from "../actions";
@@ -37,10 +38,10 @@ function useLogin() {
         setItemInLocalStorage(SMITE_USER, res.response); //Persist in local storage
         history.push("/dashboard");
         toggleNotify({
-          icon: "announcement",
-          title: "Error!",
+          icon: "user",
+          title: `Hello ${res.response.user.firstName}! Welcome to Hire Well!`,
           message: res.response,
-          color: ERROR_COLOUR,
+          color: HIRE_WELL_COLOUR,
         });
       }
       if (res.status === ERROR_RESPONSE) {

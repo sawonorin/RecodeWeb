@@ -8,7 +8,7 @@ const ActivityProvider = (props) => {
     title: "",
     message: "",
     color: "",
-    static: null,
+    static: false,
   });
 
   const toggleLoader = (value) => {
