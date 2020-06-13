@@ -7,7 +7,7 @@ const Notify = () => {
   if (notification.static !== true) {
     setTimeout(() => {
       toggleNotify({});
-    }, 5000);
+    }, 7000);
   }
 
   return (

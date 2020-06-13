@@ -68,7 +68,7 @@ function useCreateCompany(resetView) {
       let response = res.response;
       if (res.status === SUCCESS_RESPONSE) {
         toggleNotify({
-          icon: "announcement",
+          icon: "check",
           title: "Success!",
           message: `${response.name} has been suceesfully created`,
           color: SUCCESS_COLOUR,
@@ -107,9 +107,9 @@ function useUpdateCompany(resetView) {
       let response = res.response;
       if (res.status === SUCCESS_RESPONSE) {
         toggleNotify({
-          icon: "announcement",
+          icon: "check",
           title: "Success!",
-          message: `${response.name} has been suceesfully created`,
+          message: `${response.name} has been suceesfully updated`,
           color: SUCCESS_COLOUR,
           static: true,
         });
