@@ -1,5 +1,5 @@
 import React from "react";
-import "./Loader.scss";
+import "./LazyLoader.scss";
 
 const Loader = () => {
   return <div className="loader"></div>;

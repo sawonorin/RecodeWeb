@@ -40,7 +40,6 @@ const LoginForm = () => {
       <Grid.Column
         className="bounce-in-top"
         style={{
-          animationDelay:"0.5s",
           animationDuration: "3s",
           animationIterationCount: "1",
           maxWidth: 400,

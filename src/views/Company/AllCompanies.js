@@ -17,7 +17,6 @@ const AllCompanies = () => {
   });
 
   const {
-    loading,
     allCompaniesResponse,
     getAllCompanies,
   } = companyHooks.useGetAllCompanies(filterParams);
@@ -30,19 +29,27 @@ const AllCompanies = () => {
   };
 
   const [formParams, setFormParams] = useState(initialFormParams);
-  const [open, toggleModal] = useState(false);
+  const [openCreate, toggleCreateModal] = useState(false);
+  const [openUpdate, toggleUpdateModal] = useState(false);
 
   const resetView = () => {
     getAllCompanies(filterParams);
+    resetModal();
+  };
+
+  const resetModal = () => {
     setFormParams(initialFormParams);
-    toggleModal(false);
+    toggleCreateModal(false);
+    toggleUpdateModal(false);
   };
 
   /** Create Company */
-  const { createCompany } = companyHooks.useCreateCompany(resetView);
+  const { loading, createCompany } = companyHooks.useCreateCompany(resetView);
 
   /** Update Company */
-  const { updateCompany } = companyHooks.useUpdateCompany(resetView);
+  const { loading: loading2, updateCompany } = companyHooks.useUpdateCompany(
+    resetView
+  );
 
   /**Pagination */
   const onPageChange = (value) => {
@@ -62,7 +69,7 @@ const AllCompanies = () => {
       name: validateNonEmptyString(formParams.name),
       code: validateNonEmptyString(formParams.code),
     };
-    console.log(error);
+    console.log({ error });
     setFormErrors(error);
     return isFormValid(formErrors);
   };
@@ -90,25 +97,25 @@ const AllCompanies = () => {
           filterParams={filterParams}
           setFilterParams={setFilterParams}
           getAllCompanies={getAllCompanies}
-          loading={loading}
         />
       }
       body={
         <CompaniesTable
-          loading={loading}
+          loading={loading2}
           allCompaniesResponse={allCompaniesResponse}
           formParams={formParams}
           setFormParams={setFormParams}
           updateCompany={() => update()}
-          initialFormParams={initialFormParams}
           formErrors={formErrors}
+          resetModal={() => resetModal()}
+          openUpdate={openUpdate}
+          toggleUpdateModal={toggleUpdateModal}
         />
       }
       primaryActions={
         <Modal
-          open={open}
-          onOpen={toggleModal}
-          onClose={() => setFormParams(initialFormParams)}
+          open={openCreate}
+          onOpen={() => toggleCreateModal(true)}
           size="mini"
           trigger={<Button color="purple">Add Company</Button>}
           header="Add company"
@@ -125,13 +132,14 @@ const AllCompanies = () => {
             {
               key: "Cancel",
               content: "Cancel",
-              onClick: () => toggleModal(false),
+              onClick: () => resetModal(),
             },
             {
               key: "done",
               content: "Add Company",
               positive: true,
               onClick: () => create(),
+              loading,
             },
           ]}
         />

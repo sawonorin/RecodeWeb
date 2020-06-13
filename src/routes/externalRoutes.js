@@ -1,6 +1,6 @@
 import React, { Suspense, lazy } from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
-import Loader from "../components/Loader/Loader";
+import LazyLoader from "../components/Loaders/LazyLoader";
 /**Implementation for lazy loading */
 const Homepage = lazy(() => import("../views/HomePage/Homepage"));
 const LoginForm = lazy(() => import("../views/Auth/Login"));
@@ -9,7 +9,7 @@ const AppLayout = lazy(() => import("../views/AppLayout"));
 
 const externalRoutes = () => {
   return (
-    <Suspense fallback={<Loader />}>
+    <Suspense fallback={<LazyLoader />}>
       <BrowserRouter>
         <Switch>
           <Route exact path="/" component={Homepage} />

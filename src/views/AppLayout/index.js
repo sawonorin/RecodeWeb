@@ -3,6 +3,7 @@ import { Grid } from "semantic-ui-react";
 import InternalRoutes from "../../routes/InternalRoutes";
 import NavBar from "./NavBar";
 import SideBar from "./SideBar";
+import Notify from "../../components/Notifications/Notify";
 
 const AppLayout = () => {
   return (
@@ -10,7 +11,11 @@ const AppLayout = () => {
       <Grid.Row style={{ paddingBottom: 0 }}>
         <Grid.Column
           width={4}
-          style={{backgroundColor: "#a333c8",position:"fixed", height:"100%" }}
+          style={{
+            backgroundColor: "#a333c8",
+            position: "fixed",
+            height: "100%",
+          }}
           floated="left"
         >
           <SideBar />
@@ -21,6 +26,7 @@ const AppLayout = () => {
           </Grid.Row>
           <Grid.Row style={{ marginTop: 15 }}>
             <InternalRoutes />
+            <Notify />
           </Grid.Row>
         </Grid.Column>
       </Grid.Row>

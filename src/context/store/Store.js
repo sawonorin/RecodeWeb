@@ -5,12 +5,12 @@ import { GLOBAL_STATE } from "../../constants";
 
 const storedGlobalState = getItemFromLocalStorage(GLOBAL_STATE);
 const initialState = storedGlobalState ? storedGlobalState : { azy: "" };
-//if there is a stored global state, use it instead
+//if there is a stored global state, use it. Else use an empty global state
 
 const store = createContext(initialState);
 const { Provider } = store;
 
-const StateProvider = ({ children }) => {
+const StoreProvider = ({ children }) => {
   const [state, dispatch] = useReducer(storeReducer, initialState);
 
   //Persist global state in local storage
@@ -21,4 +21,4 @@ const StateProvider = ({ children }) => {
   return <Provider value={{ state, dispatch }}>{children}</Provider>;
 };
 
-export { store, StateProvider };
+export { store, StoreProvider };

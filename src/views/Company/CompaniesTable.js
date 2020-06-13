@@ -3,7 +3,16 @@ import { Table, Button, Modal } from "semantic-ui-react";
 import SaveCompany from "./SaveCompany";
 
 const CompaniesTable = (props) => {
-  const { initialFormParams, formParams, setFormParams, updateCompany,formErrors } = props;
+  const {
+    loading,
+    openUpdate,
+    toggleUpdateModal,
+    resetModal,
+    formParams,
+    setFormParams,
+    updateCompany,
+    formErrors,
+  } = props;
   return (
     <div>
       <Table fixed>
@@ -23,7 +32,8 @@ const CompaniesTable = (props) => {
                 <Table.Cell>{item.code}</Table.Cell>
                 <Table.Cell>
                   <Modal
-                    onClose={() => setFormParams(initialFormParams)}
+                    open={openUpdate}
+                    onOpen={() => toggleUpdateModal()}
                     size="mini"
                     trigger={
                       <Button
@@ -46,12 +56,14 @@ const CompaniesTable = (props) => {
                       {
                         key: "Cancel",
                         content: "Cancel",
+                        onClick: () => resetModal(),
                       },
                       {
                         key: "done",
                         content: "Update Company",
                         positive: true,
                         onClick: () => updateCompany(),
+                        loading
                       },
                     ]}
                   />

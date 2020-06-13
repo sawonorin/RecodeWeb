@@ -1,16 +1,19 @@
 import React from "react";
 import ExternalRoutes from "../routes/externalRoutes";
-import { StateProvider } from "../context/store/Store";
+import ActivityProvider from "../context/activity/ActivityProvider";
+import { StoreProvider } from "../context/store/Store";
 import "semantic-ui-css/semantic.min.css";
 import "./index.css";
-import "../assets/styles/index.scss"
+import "../assets/styles/index.scss";
 
 const App = () => {
   return (
     <React.StrictMode>
-      <StateProvider>
-        <ExternalRoutes />
-      </StateProvider>
+      <ActivityProvider>
+        <StoreProvider>
+          <ExternalRoutes />
+        </StoreProvider>
+      </ActivityProvider>
     </React.StrictMode>
   );
 };

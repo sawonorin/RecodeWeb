@@ -1,10 +1,13 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { Button, Dropdown, Menu } from "semantic-ui-react";
 import { authHooks } from "../../hooks";
+import PageLoader from "../../components/Loaders/PageLoader";
+import { ActivityContext } from "../../context/activity/ActivityContext";
 
 const NavBar = () => {
   const [activeItem, handleItemClick] = useState("home");
   const { logOut } = authHooks.useLogOut();
+  const { loading } = useContext(ActivityContext);
 
   return (
     <Menu
@@ -35,10 +38,14 @@ const NavBar = () => {
             <Dropdown.Item>Others</Dropdown.Item>
           </Dropdown.Menu>
         </Dropdown>
-
         <Menu.Item>
           <Button onClick={() => logOut()}>Logout</Button>
         </Menu.Item>
+        {loading && (
+          <Menu.Item>
+            <PageLoader />
+          </Menu.Item>
+        )}
       </Menu.Menu>
     </Menu>
   );
