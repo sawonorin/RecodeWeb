@@ -1,5 +1,10 @@
 import { useState, useReducer, useEffect, useContext } from "react";
-import { SUCCESS_RESPONSE, ERROR_RESPONSE, ERROR_COLOUR } from "../constants";
+import {
+  SUCCESS_RESPONSE,
+  ERROR_RESPONSE,
+  ERROR_COLOUR,
+  SUCCESS_COLOUR,
+} from "../constants";
 import { apiReducer } from "../reducers";
 import { apiActions } from "../actions";
 import { companyService } from "../services/company.service";
@@ -21,20 +26,20 @@ function useGetAllCompanies(companyParams) {
     toggleLoader(true);
     return companyService.getAllCompanies(payload).then((res) => {
       toggleLoader(false);
-
+      let response = res.response;
       if (res.status === SUCCESS_RESPONSE) {
         setResponse({
-          companies: res.response.companys,
-          pageNo: res.response.pageNo,
-          pageSize: res.response.pageSize,
+          companies: response.companys,
+          pageNo: response.pageNo,
+          pageSize: response.pageSize,
         });
       }
       if (res.status === ERROR_RESPONSE) {
-        setResponse({ error: res.response }); //show error message
+        setResponse({ error: response }); //show error message
         toggleNotify({
           icon: "announcement",
           title: "Error!",
-          message: res.response,
+          message: response,
           color: ERROR_COLOUR,
         });
       }
@@ -60,8 +65,15 @@ function useCreateCompany(resetView) {
 
     return companyService.createCompany(payload).then((res) => {
       dispatch(apiActions.endRequest());
+      let response = res.response;
       if (res.status === SUCCESS_RESPONSE) {
-        setResponse({ company: res.response });
+        toggleNotify({
+          icon: "announcement",
+          title: "Success!",
+          message: `${response.name} has been suceesfully created`,
+          color: SUCCESS_COLOUR,
+          static: true,
+        });
         resetView();
       }
       if (res.status === ERROR_RESPONSE) {
@@ -69,7 +81,7 @@ function useCreateCompany(resetView) {
         toggleNotify({
           icon: "announcement",
           title: "Error!",
-          message: res.response,
+          message: response,
           color: ERROR_COLOUR,
           static: true,
         });
@@ -92,9 +104,15 @@ function useUpdateCompany(resetView) {
 
     return companyService.updateCompany(payload).then((res) => {
       dispatch(apiActions.endRequest());
-
+      let response = res.response;
       if (res.status === SUCCESS_RESPONSE) {
-        setResponse({ company: res.response });
+        toggleNotify({
+          icon: "announcement",
+          title: "Success!",
+          message: `${response.name} has been suceesfully created`,
+          color: SUCCESS_COLOUR,
+          static: true,
+        });
         resetView();
       }
       if (res.status === ERROR_RESPONSE) {
@@ -102,7 +120,7 @@ function useUpdateCompany(resetView) {
         toggleNotify({
           icon: "announcement",
           title: "Error!",
-          message: res.response,
+          message: response,
           color: ERROR_COLOUR,
         });
       }
