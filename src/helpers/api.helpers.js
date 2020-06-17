@@ -1,13 +1,11 @@
 import axios from "axios";
-import { SUCCESS_RESPONSE, SMITE_USER } from "../constants";
+import { SMITE_USER } from "../constants";
 
 export const apiHelpers = {
   postRequest,
   getRequest,
   putRequest,
   formatPromiseResponse,
-  interpretErrorResponse,
-  formatSuccessResponse,
 };
 
 function authHeader() {
@@ -48,29 +46,5 @@ function putRequest(url, payload) {
 }
 
 function formatPromiseResponse(res, resType) {
-  let responseType = resType === undefined ? SUCCESS_RESPONSE : resType;
-  return { status: responseType, response: res };
-}
-
-function formatSuccessResponse(res, resType) {
-  let responseType = resType === undefined ? SUCCESS_RESPONSE : resType;
-  return { status: responseType, response: res.data.responseData };
-}
-
-function interpretErrorResponse(error) {
-  let errorMessage = "";
-    if (error.response === undefined) {
-      errorMessage = "Unable to connect to the API Service";
-    } else {
-      errorMessage = error.response.data
-        ? error.response.data.message
-          ? error.response.data.message
-          : error.response.data
-        : "Unable to handle request";
-    }
-    if (typeof errorMessage === "string") {
-      return errorMessage;
-    } else {
-      return "Something went wrong!";
-    }
+  return { status: resType, response: res.data ? res.data : res };
 }

@@ -29,9 +29,9 @@ function useGetAllCompanies(companyParams) {
       let response = res.response;
       if (res.status === SUCCESS_RESPONSE) {
         setResponse({
-          companies: response.companys,
-          pageNo: response.pageNo,
-          pageSize: response.pageSize,
+          companies: response.responseData.companys,
+          pageNo: response.responseData.pageNo,
+          pageSize: response.responseData.pageSize,
         });
       }
       if (res.status === ERROR_RESPONSE) {
@@ -39,7 +39,7 @@ function useGetAllCompanies(companyParams) {
         toggleNotify({
           icon: "announcement",
           title: "Error!",
-          message: response,
+          message: response.message,
           color: ERROR_COLOUR,
         });
       }
@@ -67,21 +67,31 @@ function useCreateCompany(resetView) {
       dispatch(apiActions.endRequest());
       let response = res.response;
       if (res.status === SUCCESS_RESPONSE) {
-        toggleNotify({
-          icon: "check",
-          title: "Success!",
-          message: `${response.name} has been suceesfully created`,
-          color: SUCCESS_COLOUR,
-          static: true,
-        });
-        resetView();
+        if (response.requestSuccessful) {
+          toggleNotify({
+            icon: "check",
+            title: "Success!",
+            message: `${response.responseData.name} has been suceesfully created`,
+            color: SUCCESS_COLOUR,
+            static: true,
+          });
+          resetView();
+        } else {
+          toggleNotify({
+            icon: "announcement",
+            title: "Error!",
+            message: response.message,
+            color: ERROR_COLOUR,
+            static: true,
+          });
+        }
       }
       if (res.status === ERROR_RESPONSE) {
         setResponse({ error: res.response });
         toggleNotify({
           icon: "announcement",
           title: "Error!",
-          message: response,
+          message: response.message,
           color: ERROR_COLOUR,
           static: true,
         });
@@ -106,21 +116,31 @@ function useUpdateCompany(resetView) {
       dispatch(apiActions.endRequest());
       let response = res.response;
       if (res.status === SUCCESS_RESPONSE) {
-        toggleNotify({
-          icon: "check",
-          title: "Success!",
-          message: `${response.name} has been suceesfully updated`,
-          color: SUCCESS_COLOUR,
-          static: true,
-        });
-        resetView();
+        if (response.requestSuccessful) {
+          toggleNotify({
+            icon: "check",
+            title: "Success!",
+            message: `${response.responseData.name} has been suceesfully updated`,
+            color: SUCCESS_COLOUR,
+            static: true,
+          });
+          resetView();
+        } else {
+          toggleNotify({
+            icon: "announcement",
+            title: "Error!",
+            message: response.message,
+            color: ERROR_COLOUR,
+            static: true,
+          });
+        }
       }
       if (res.status === ERROR_RESPONSE) {
         setResponse({ error: res.response });
         toggleNotify({
           icon: "announcement",
           title: "Error!",
-          message: response,
+          message: response.message,
           color: ERROR_COLOUR,
         });
       }

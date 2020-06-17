@@ -18,7 +18,7 @@ const Notify = () => {
       hidden={!notification.message}
       color={notification.color}
       style={{
-        position: "absolute",
+        position: "fixed",
         top: "60px",
         right: "15px",
         width: "400px",
