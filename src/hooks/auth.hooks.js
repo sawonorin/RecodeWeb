@@ -32,24 +32,34 @@ function useLogin() {
 
     return authService.login(payload).then((res) => {
       dispatch(apiActions.endRequest());
-
+      let response = res.response;
       if (res.status === SUCCESS_RESPONSE) {
-        setLoginResponse({ user: res.response }); //Update user
-        setItemInLocalStorage(SMITE_USER, res.response); //Persist in local storage
-        history.push("/dashboard");
-        toggleNotify({
-          icon: "user",
-          title: `Hello ${res.response.user.firstName}! Welcome to Hire Well!`,
-          message: res.response,
-          color: HIRE_WELL_COLOUR,
-        });
+        if (response.requestSuccessful) {
+          setLoginResponse({ user: response.responseData }); //Update user
+          setItemInLocalStorage(SMITE_USER, response.responseData); //Persist in local storage
+          history.push("/dashboard");
+          toggleNotify({
+            icon: "user",
+            title: `Hello ${response.responseData.user.firstName}! Welcome to Hire Well!`,
+            message: res.response,
+            color: HIRE_WELL_COLOUR,
+          });
+        } else {
+          toggleNotify({
+            icon: "announcement",
+            title: "Error!",
+            message: response.message,
+            color: ERROR_COLOUR,
+            static: true,
+          });
+        }
       }
       if (res.status === ERROR_RESPONSE) {
-        setLoginResponse({ error: res.response }); //show error message
+        setLoginResponse({ error: response.message }); //show error message
         toggleNotify({
           icon: "announcement",
           title: "Error!",
-          message: res.response,
+          message: response.message,
           color: ERROR_COLOUR,
         });
       }
