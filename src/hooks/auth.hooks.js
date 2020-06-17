@@ -43,6 +43,7 @@ function useLogin() {
             title: `Hello ${response.responseData.user.firstName}! Welcome to Hire Well!`,
             message: res.response,
             color: HIRE_WELL_COLOUR,
+            position: "bottom",
           });
         } else {
           toggleNotify({

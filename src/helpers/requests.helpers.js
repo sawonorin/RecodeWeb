@@ -37,6 +37,7 @@ function makePostRequest(requestUrl, payload) {
   return apiHelpers
     .postRequest(`${REACT_APP_BASE_API_URL}${requestUrl}`, payload)
     .then((response) => {
+      console.log(response, "succ");
       if (response.status === 200 || response.status === 201) {
         return apiHelpers.formatPromiseResponse(response, SUCCESS_RESPONSE);
       }

@@ -21,7 +21,10 @@ function postRequest(url, payload) {
   const header = authHeader();
   let reqHeader = header ? header : { "Content-Type": "application/json" };
   let config = { headers: reqHeader };
-  return axios.post(url, payload, config);
+  return axios
+    .post(url, payload, config)
+    .then((res) => res)
+    .catch((err) => (err.response ? err.response : err));
 }
 
 function getRequest(url) {
@@ -30,19 +33,18 @@ function getRequest(url) {
   let config = { headers: reqHeader };
   return axios
     .get(url, config)
-    .then(function (res) {
-      return res;
-    })
-    .catch(function (err) {
-      return err;
-    });
+    .then((res) => res)
+    .catch((err) => (err.response ? err.response : err));
 }
 
 function putRequest(url, payload) {
   const header = authHeader();
   let reqHeader = header ? header : { "Content-Type": "application/json" };
   let config = { headers: reqHeader };
-  return axios.put(url, payload, config);
+  return axios
+    .put(url, payload, config)
+    .then((res) => res)
+    .catch((err) => (err.response ? err.response : err));
 }
 
 function formatPromiseResponse(res, resType) {

@@ -17,18 +17,36 @@ const Notify = () => {
       content={notification.message}
       hidden={!notification.message}
       color={notification.color}
-      style={{
-        position: "fixed",
-        top: "60px",
-        right: "15px",
-        width: "400px",
-        maxWidth: "600px",
-        zIndex: 5000 + "!important",
-      }}
+      style={
+        notification.position === "bottom"
+          ? {
+              position: "fixed",
+              bottom: "15px",
+              right: "15px",
+              width: "400px",
+              maxWidth: "600px",
+              zIndex: 5000 + "!important",
+            }
+          : {
+              position: "fixed",
+              top: "60px",
+              right: "15px",
+              width: "400px",
+              maxWidth: "600px",
+              zIndex: 5000 + "!important",
+            }
+      }
       onDismiss={() => toggleNotify({})}
       static={notification.static}
     />
   );
+};
+
+Notify.propTypes = {
+  icon: "",
+  header: "",
+  conternt: "",
+  position: "",
 };
 
 export default Notify;

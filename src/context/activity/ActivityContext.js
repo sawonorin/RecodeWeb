@@ -9,6 +9,7 @@ export const ActivityContext = React.createContext({
     message: "",
     color: "purple",
     static: false,
+    position: "",
   },
   toggleNotify: () => {},
 });
