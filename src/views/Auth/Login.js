@@ -16,13 +16,7 @@ const LoginForm = () => {
     email: "",
     password: "",
   });
-  const { loading, loginResponse, login } = authHooks.useLogin();
-  const [visible, setVisibility] = useState(false);
-
-  const handleLogin = () => {
-    login(loginFormParams);
-    setVisibility(true);
-  };
+  const { loading, login } = authHooks.useLogin();
 
   return (
     <Grid
@@ -33,7 +27,6 @@ const LoginForm = () => {
         backgroundSize: "cover",
         backgroundRepeat: "no-repeat",
         backgroundColor: "purple",
-        // backgroundBlendMode: "soft-light",
         margin: 0,
       }}
     >
@@ -57,13 +50,7 @@ const LoginForm = () => {
           {/*<Image src='/logo.png' />*/} Login
         </Header>
 
-        {loginResponse.error && visible && (
-          <Message error onDismiss={() => setVisibility(false)}>
-            {loginResponse.error}
-          </Message>
-        )}
-
-        <Form size="large" onSubmit={() => handleLogin()}>
+        <Form size="large" onSubmit={() => login(loginFormParams)}>
           <Segment
             stacked
             style={{

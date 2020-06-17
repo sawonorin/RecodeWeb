@@ -4,6 +4,8 @@ import { ActivityContext } from "../../context/activity/ActivityContext";
 
 const Notify = () => {
   const { notification, toggleNotify } = useContext(ActivityContext);
+  console.log(notification.static,"Az")
+  
   if (notification.static !== true) {
     setTimeout(() => {
       toggleNotify({});
@@ -29,8 +31,8 @@ const Notify = () => {
             }
           : {
               position: "fixed",
-              top: "60px",
-              right: "15px",
+              top: "15px",
+              right: "20px",
               width: "400px",
               maxWidth: "600px",
               zIndex: 5000 + "!important",

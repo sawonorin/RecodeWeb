@@ -20,22 +20,17 @@ export const authHooks = {
 };
 
 function useLogin() {
-  const initialState = { user: "", error: "" };
-  const [loginResponse, setLoginResponse] = useState(initialState);
   const [state, dispatch] = useReducer(apiReducer, { loading: false });
   const { toggleNotify } = useContext(ActivityContext);
   const history = useHistory();
 
   function login(payload) {
-    setLoginResponse(initialState);
     dispatch(apiActions.startRequest());
-
     return authService.login(payload).then((res) => {
       dispatch(apiActions.endRequest());
       let response = res.response;
       if (res.status === SUCCESS_RESPONSE) {
         if (response.requestSuccessful) {
-          setLoginResponse({ user: response.responseData }); //Update user
           setItemInLocalStorage(SMITE_USER, response.responseData); //Persist in local storage
           history.push("/dashboard");
           toggleNotify({
@@ -56,18 +51,18 @@ function useLogin() {
         }
       }
       if (res.status === ERROR_RESPONSE) {
-        setLoginResponse({ error: response.message }); //show error message
         toggleNotify({
           icon: "announcement",
           title: "Error!",
           message: response.message,
           color: ERROR_COLOUR,
+          static: true,
         });
       }
     });
   }
 
-  return { ...state, loginResponse, login };
+  return { ...state, login };
 }
 
 function useLogOut() {
