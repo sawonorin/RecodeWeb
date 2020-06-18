@@ -54,13 +54,10 @@ function useGetAllCompanies(companyParams) {
 }
 
 function useCreateCompany(resetView) {
-  const initialState = { company: "", error: "" };
-  const [createCompanyResponse, setResponse] = useState(initialState);
   const [state, dispatch] = useReducer(apiReducer, { loading: false });
   const { toggleNotify } = useContext(ActivityContext);
 
   function createCompany(payload) {
-    setResponse(initialState);
     dispatch(apiActions.startRequest());
 
     return companyService.createCompany(payload).then((res) => {
@@ -87,29 +84,24 @@ function useCreateCompany(resetView) {
         }
       }
       if (res.status === ERROR_RESPONSE) {
-        setResponse({ error: res.response });
         toggleNotify({
           icon: "announcement",
           title: "Error!",
-          message: response.message,
+          message: response.message ? response.message : response,
           color: ERROR_COLOUR,
-          static: true,
         });
       }
     });
   }
 
-  return { ...state, createCompanyResponse, createCompany };
+  return { ...state, createCompany };
 }
 
 function useUpdateCompany(resetView) {
-  const initialState = { company: "", error: "" };
-  const [updateCompanyResponse, setResponse] = useState(initialState);
   const [state, dispatch] = useReducer(apiReducer, { loading: false });
   const { toggleNotify } = useContext(ActivityContext);
 
   function updateCompany(payload) {
-    setResponse(initialState);
     dispatch(apiActions.startRequest());
 
     return companyService.updateCompany(payload).then((res) => {
@@ -136,16 +128,15 @@ function useUpdateCompany(resetView) {
         }
       }
       if (res.status === ERROR_RESPONSE) {
-        setResponse({ error: res.response });
         toggleNotify({
           icon: "announcement",
           title: "Error!",
-          message: response.message,
+          message: response.message ? response.message : response,
           color: ERROR_COLOUR,
         });
       }
     });
   }
 
-  return { ...state, updateCompanyResponse, updateCompany };
+  return { ...state, updateCompany };
 }

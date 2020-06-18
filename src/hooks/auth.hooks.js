@@ -1,4 +1,4 @@
-import { useState, useReducer, useContext } from "react";
+import { useReducer, useContext } from "react";
 import { authService } from "../services/auth.service";
 import {
   SUCCESS_RESPONSE,
@@ -54,7 +54,7 @@ function useLogin() {
         toggleNotify({
           icon: "announcement",
           title: "Error!",
-          message: response.message,
+          message: response.message ? response.message : response,
           color: ERROR_COLOUR,
           static: true,
         });

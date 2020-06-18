@@ -6,10 +6,13 @@ import { ActivityContext } from "../../context/activity/ActivityContext";
 const Notify = () => {
   const { notification, toggleNotify } = useContext(ActivityContext);
 
-  if (notification.static !== true) {
-    setTimeout(() => {
-      toggleNotify({});
-    }, 10000);
+  if (notification.static === false || notification.static === undefined) {
+    setTimeout(
+      () => {
+        toggleNotify({});
+      },
+      notification.visibilityDuration ? notification.visibilityDuration : 10000
+    );
   }
 
   return (
@@ -51,6 +54,11 @@ Notify.propTypes = {
   header: Proptypes.string.isRequired,
   content: Proptypes.string.isRequired,
   position: Proptypes.string,
+  static: Proptypes.bool,
+};
+
+Notify.defaultProps = {
+  static: false,
 };
 
 export default Notify;

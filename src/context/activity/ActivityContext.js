@@ -10,6 +10,7 @@ export const ActivityContext = React.createContext({
     color: "purple",
     static: false,
     position: "",
+    visibilityDuration: 10000,
   },
   toggleNotify: () => {},
 });
