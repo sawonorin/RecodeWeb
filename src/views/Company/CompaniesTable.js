@@ -33,7 +33,7 @@ const CompaniesTable = (props) => {
                 <Table.Cell>
                   <Modal
                     open={openUpdate}
-                    onOpen={() => toggleUpdateModal()}
+                    onOpen={() => toggleUpdateModal(true)}
                     size="mini"
                     trigger={
                       <Button

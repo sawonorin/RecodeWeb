@@ -1,5 +1,6 @@
 import React, { useContext } from "react";
 import { Message } from "semantic-ui-react";
+import Proptypes from "prop-types";
 import { ActivityContext } from "../../context/activity/ActivityContext";
 
 const Notify = () => {
@@ -27,7 +28,7 @@ const Notify = () => {
               width: "400px",
               maxWidth: "600px",
               margin: 0,
-              zIndex: 5000,
+              zIndex: 5000000,
             }
           : {
               position: "fixed",
@@ -36,7 +37,7 @@ const Notify = () => {
               width: "400px",
               maxWidth: "600px",
               margin: 0,
-              zIndex: 5000,
+              zIndex: 5000000,
             }
       }
       onDismiss={() => toggleNotify({})}
@@ -46,10 +47,10 @@ const Notify = () => {
 };
 
 Notify.propTypes = {
-  icon: "",
-  header: "",
-  conternt: "",
-  position: "",
+  icon: Proptypes.element,
+  header: Proptypes.string.isRequired,
+  content: Proptypes.string.isRequired,
+  position: Proptypes.string,
 };
 
 export default Notify;
