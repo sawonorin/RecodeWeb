@@ -54,7 +54,7 @@ const Notify = () => {
 
 Notify.propTypes = {
   icon: Proptypes.element,
-  header: Proptypes.string.isRequired,
+  header: Proptypes.string,
   content: Proptypes.string.isRequired,
   position: Proptypes.string,
   static: Proptypes.bool,
