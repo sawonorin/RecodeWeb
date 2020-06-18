@@ -41,6 +41,7 @@ const AllCompanies = () => {
     setFormParams(initialFormParams);
     toggleCreateModal(false);
     toggleUpdateModal(false);
+    setFormErrors({});
   };
 
   /** Create Company */
@@ -60,32 +61,30 @@ const AllCompanies = () => {
     getAllCompanies(filterParams);
   };
 
+  /**validation */
   const [formErrors, setFormErrors] = useState({});
 
-  /**validation */
   const validateFormInputs = () => {
     const { validateNonEmptyString, isFormValid } = validationHelper;
     let error = {
       name: validateNonEmptyString(formParams.name),
       code: validateNonEmptyString(formParams.code),
     };
-    console.log({ error });
     setFormErrors(error);
-    return isFormValid(formErrors);
+    return isFormValid(error);
   };
 
+  /**Actions */
   const create = () => {
-    // if (validateFormInputs) {
-    //   return;
-    // }
-    createCompany(formParams);
+    if (validateFormInputs()) {
+      return createCompany(formParams);
+    }
   };
 
   const update = () => {
-    // if (validateFormInputs) {
-    //   return;
-    // }
-    updateCompany(formParams);
+    if (validateFormInputs()) {
+      return updateCompany(formParams);
+    }
   };
 
   return (

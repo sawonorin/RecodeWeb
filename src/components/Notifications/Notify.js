@@ -1,7 +1,10 @@
 import React, { useContext } from "react";
 import { Message } from "semantic-ui-react";
 import Proptypes from "prop-types";
-import { ActivityContext } from "../../context/activity/ActivityContext";
+import {
+  ActivityContext,
+  notificationInitialState,
+} from "../../context/activity/ActivityContext";
 
 const Notify = () => {
   const { notification, toggleNotify } = useContext(ActivityContext);
@@ -9,7 +12,7 @@ const Notify = () => {
   if (notification.static === false || notification.static === undefined) {
     setTimeout(
       () => {
-        toggleNotify({});
+        toggleNotify(notificationInitialState);
       },
       notification.visibilityDuration ? notification.visibilityDuration : 10000
     );

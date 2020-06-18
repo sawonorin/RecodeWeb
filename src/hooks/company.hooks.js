@@ -39,7 +39,7 @@ function useGetAllCompanies(companyParams) {
         toggleNotify({
           icon: "announcement",
           title: "Error!",
-          message: response.message,
+          message: response.message ? response.message : response,
           color: ERROR_COLOUR,
         });
       }
