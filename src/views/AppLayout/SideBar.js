@@ -15,11 +15,7 @@ const menuItems = [
     name: "users",
     icon: "user",
   },
-  {
-    to: "/interviews/all",
-    name: "interviews",
-    icon: "group",
-  },
+
   {
     to: "/companies/all",
     name: "companies",
@@ -35,6 +31,11 @@ const menuItems = [
     name: "job roles",
     icon: "road",
   },
+  // {
+  //   to: "/interviews/all",
+  //   name: "interviews",
+  //   icon: "group",
+  // },
 ];
 
 const SideBar = () => {

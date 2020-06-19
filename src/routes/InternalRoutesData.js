@@ -1,5 +1,6 @@
 import { lazy } from "react";
 const Dashboard = lazy(() => import("../views/Dashboard/Dashboard"));
+const AllUsers = lazy(() => import("../views/User/AllUsers"));
 const AllCompanies = lazy(() => import("../views/Company/AllCompanies"));
 const AllDepartments = lazy(() => import("../views/Department/AllDepartments"));
 const AllJobRoles = lazy(() => import("../views/JobRole/AllJobRoles"));
@@ -10,11 +11,11 @@ const UnauthorizedView = lazy(() =>
 //Route Object
 export const internalRoutesData = [
   { path: ["/", "/dashboard"], component: Dashboard, exact: true },
-  // {
-  //   path: "/users/all",
-  //   component: AllCompanies,
-  //   exact: true,
-  // },
+  {
+    path: "/users/all",
+    component: AllUsers,
+    exact: true,
+  },
   {
     path: "/companies/all",
     component: AllCompanies,

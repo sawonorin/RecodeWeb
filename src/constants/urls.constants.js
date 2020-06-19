@@ -7,7 +7,7 @@ export const VERIFY_ACCOUNT = "Account/verifyaccount";
 //User
 export const CREATE_USER = "User/Create";
 export const UPDATE_USER = "User/Update";
-export const USERS = "User/GetAll";
+export const GET_ALL_USERS = "User/GetAll";
 export const GET_USER_BY_ID = "GetUserById";
 export const ACTIVATE_USER = "User/ToggleActivateUser";
 //Companies
